@@ -1,2 +1,2 @@
-$echo "Hello"
-$mkdir certs
+echo "Hello"
+mkdir certs
