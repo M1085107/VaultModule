@@ -1,2 +1,2 @@
-echo "Hello"
-md C:\certs
+$echo "Hello"
+$mkdir C:\certs
