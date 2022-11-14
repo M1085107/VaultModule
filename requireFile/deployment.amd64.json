@@ -45,6 +45,16 @@
               "image": "apigatewayproxy.azurecr.io/gatewayedge:vault",
               "createOptions": "{}"
             }
+          },
+          "PythonModule": {
+            "version": "1.0",
+            "type": "docker",
+            "status": "running",
+            "restartPolicy": "always",
+            "settings": {
+              "image": "apigatewayproxy.azurecr.io/gatewayedge:test",
+              "createOptions": "{\"HostConfig\":{\"PortBindings\":{\"8000/tcp\":[{\"HostPort\":\"8000\"}]}}}"
+            }
           }
         }
       }
@@ -53,7 +63,8 @@
       "properties.desired": {
         "schemaVersion": "1.2",
         "routes": {
-          "VaultModuleToIoTHub": "FROM /messages/modules/VaultModule/outputs/* INTO $upstream"
+          "VaultModuleToIoTHub": "FROM /messages/modules/VaultModule/outputs/* INTO $upstream",
+          "PythonModuleToIoTHub": "FROM /messages/modules/PythonModule/outputs/* INTO $upstream"
         },
         "storeAndForwardConfiguration": {
           "timeToLiveSecs": 7200
