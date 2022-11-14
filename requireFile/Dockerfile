@@ -18,16 +18,17 @@ RUN apt-get install -y unixodbc-dev
 
 
 # Initialize the base folders..
-WORKDIR /VaultModule/
-RUN ls -l
-COPY ./  /VaultModule/
-RUN ls -l
-# COPY ./api api
+# WORKDIR /VaultModule/
+# RUN ls -l
+# COPY ./  /VaultModule/
+# RUN ls -l
+WORKDIR /usr/app/src
+COPY main.py ./
 
 # Install the library's dependencies and the library itself..
-# WORKDIR /Telemetry_demo/
+# WORKDIR 
 RUN pip install -r requirements.txt
 #RUN pip install .
 
 # Done, ready to execute
-CMD ["python", "main.py"]
+CMD ["python", "./main.py"]
