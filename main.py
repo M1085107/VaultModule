@@ -18,5 +18,5 @@ credential = DefaultAzureCredential()
 secret = SecretClient(KVUri,credential)
 secret_client = secret.get_secret("edisoniotdevedgeinterca4")
 secret_b64 = base64.b64decode(secret_client.value)
-with open('C:\\certs\\test.pfx','wb') as fopen:
+with open('./certs/test.pfx','wb') as fopen:
     fopen.write(secret_b64)
