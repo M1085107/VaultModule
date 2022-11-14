@@ -18,12 +18,12 @@ RUN apt-get install -y unixodbc-dev
 
 
 # Initialize the base folders..
-# WORKDIR /VaultModule/
-# RUN ls -l
-# COPY ./  /VaultModule/
-# RUN ls -l
-WORKDIR /usr/app/src
-COPY main.py ./
+WORKDIR /VaultModule/
+RUN ls -l
+COPY ./  /VaultModule/
+RUN ls -l
+# WORKDIR /usr/app/src
+# COPY main.py ./
 
 # Install the library's dependencies and the library itself..
 # WORKDIR 
