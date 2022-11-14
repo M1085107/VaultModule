@@ -30,4 +30,4 @@ RUN pip install -r requirements.txt
 #RUN pip install .
 
 # Done, ready to execute
-CMD ["python", "./main.py"]
+CMD ["python", "main.py"]
