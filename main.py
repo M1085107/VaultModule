@@ -5,7 +5,7 @@ import base64
 
 KVUri = "https://" + "gevault2" + ".vault.azure.net"
 
-credential = DefaultAzureCredential()
+credential = DefaultAzureCredential(connection_verify=False, exclude_shared_token_cache_credential=True)
 
 # certificate_client = CertificateClient(vault_url=KVUri, credential=credential)
 
@@ -15,7 +15,7 @@ credential = DefaultAzureCredential()
 # print(certificate._properties)
 # print(certificate.policy.issuer_name)
 
-secret = SecretClient(KVUri,credential)
+secret = SecretClient(vault_url= KVUri,credential= credential,connection_verify=False)
 secret_client = secret.get_secret("edisoniotdevedgeinterca4")
 secret_b64 = base64.b64decode(secret_client.value)
 with open('test.pfx','wb') as fopen:
