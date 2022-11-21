@@ -7,7 +7,7 @@ import OpenSSL.crypto as crypto
 
 # KVUri = "https://key-edge-dev-infra-001.vault.azure.net/"
 # KVUri=os.getenv("VAULT_URL",default=None)
-KVUri=os.environ.get("VAULT_URL")
+KVUri=os.environ["VAULT_URL"]
 print(KVUri)
 # credential = DefaultAzureCredential(connection_verify=False, exclude_shared_token_cache_credential=True)
 # client = CertificateClient(vault_url= KVUri,credential= credential,connection_verify=False)
