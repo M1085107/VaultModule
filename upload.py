@@ -1,4 +1,4 @@
-from azure.identity import DefaultAzureCredential
+from azure.identity import DefaultAzureCredential,EnvironmentCredential
 from azure.keyvault.certificates import (
     CertificateClient,
     CertificateContentType,
@@ -7,24 +7,29 @@ from azure.keyvault.certificates import (
 )
 from azure.keyvault.secrets import SecretClient
 import base64
+import os
 
-KVUri = "https://" + "pevault2" + ".vault.azure.net"
+# KVUri = "https://" + "pevault2" + ".vault.azure.net"
+# credential = DefaultAzureCredential(connection_verify=False, exclude_shared_token_cache_credential=True)
 
-credential = DefaultAzureCredential(connection_verify=False, exclude_shared_token_cache_credential=True)
-client = CertificateClient(vault_url= KVUri,credential= credential,connection_verify=False)
+KVUri=os.environ["VAULT_URL"]
 
 cert_name = input("Enter Certificate name:")
 cert_pass=input("Enter the password: ")
 # uploading pfx
 pfx_name=cert_name+".pfx"
 try:
+    KVUri=os.environ["VAULT_URL"]
+    credential =EnvironmentCredential()
+
+    client = CertificateClient(vault_url= KVUri,credential= credential,connection_verify=False)
     with open('./certs/'+pfx_name, 'rb') as f:
         pfx_cert_bytes = f.read()
 
     imported_pfx=client.import_certificate(certificate_name= cert_name,certificate_bytes=pfx_cert_bytes , password=cert_pass)
     print("PFX certificate imported successfully.".format(imported_pfx.name))
 except Exception as ex:
-    print(ex)
+    print("File upload is failed")
 
 # #uploading pem
 # pem_name=cert_name+".pem"
