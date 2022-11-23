@@ -1,4 +1,0 @@
-azure-iot-hub
-azure-iot-device
-azure-keyvault-certificates
-azure-keyvault-secrets
