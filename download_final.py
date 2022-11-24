@@ -27,11 +27,11 @@ try:
     secret_client =SecretClient(vault_url=KVUri, credential=credential)
     client_cert = client.get_certificate_version(certificate_name=cert_name, version="x509-cert")
     cert_byte = client_cert.cer
-    with open(cert_pfx,'wb') as fopen:
-        fopen.write(cert_byte)
+    # with open(cert_pfx,'wb') as fopen:
+    #     fopen.write(cert_byte)
     secret = secret_client.get_secret(name=cert_name)
     b64 = base64.b64decode(secret.value)
-    with open(key_pfx,'wb') as kpfx:
+    with open(cert_pfx,'wb') as kpfx:
             kpfx.write(b64)
 except Exception as ex:
     print("no such file in vault")
